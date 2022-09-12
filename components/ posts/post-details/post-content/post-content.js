@@ -1,22 +1,18 @@
 import PostHeader from "../post-header/post-header";
+// import dynamic from "next/dynamic";
 import classes from "./post-content.module.css";
-
-const DUMMY_POST = {
-  title: "Getting started with NextJS",
-  slug: "getting-started-nextjs",
-  image: "getting-started-nextjs.png",
-  date: "",
-  excerpt:
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora ut, quos minus nam at delectus. Magni eum, illo excepturi dicta voluptas inventore commodi, perferendis eaque aperiam temporibus autem dolore ab?",
-  content: "# This is the first post",
-};
-
-const imagePath = `/images/posts/${DUMMY_POST.slug}/${DUMMY_POST.image}`;
+// const ReactMarkdown = dynamic(() => import("react-markdown"));
 
 function PostContent(props) {
+  console.log(props);
+  const { post } = props;
+  const imagePath = `/images/posts/${post.slug}/${post.image}`;
+
   return (
     <article className={classes.content}>
-      <PostHeader title={DUMMY_POST.title} image={imagePath} />
+      <PostHeader title={post.title} image={imagePath} />
+      <div>{post.content}</div>
+      {/* <ReactMarkdown children={post.content} /> */}
     </article>
   );
 }
